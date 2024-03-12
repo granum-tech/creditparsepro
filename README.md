@@ -41,6 +41,7 @@
     - [A. Experian AFR Example Report](#a-experian-afr-example-report)
     - [B. TransUnion 4.0 FFR Example Report](#b-transunion-40-ffr-example-report)
     - [C. Field Calculations and Descriptions](#c-field-calculations-and-descriptions)
+    - [D. Pricing & Plans](#d-pricing--plans)
 
 
 ## Getting Started
@@ -199,8 +200,8 @@ https://api.creditparsepro.io/v1/quota-info
 
 #### Example request
 ```bash
-curl -X GET https://api.creditparsepro.io/v1/quota-info \
-	 -H "X-API-KEY: yourKeyHere" \
+curl -X GET https://api.creditparsepro.io/v1/quota-info \ 
+     -H "X-API-KEY: yourKeyHere" \ 
      -H "Content-Type: application/json"
 ```
 #### Example response
@@ -230,8 +231,8 @@ curl -X GET https://api.creditparsepro.io/v1/quota-info \
 
 #### Example request
 ```bash
-curl -X GET https://api.creditparsepro.io/v1/rate-info \
-	 -H "X-API-KEY: yourKeyHere" \
+curl -X GET https://api.creditparsepro.io/v1/rate-info \ 
+     -H "X-API-KEY: yourKeyHere" \ 
      -H "Content-Type: application/json"
 ```
 
@@ -265,9 +266,9 @@ curl -X GET https://api.creditparsepro.io/v1/rate-info \
 #### Example request
 
 ```bash
-curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
-     -H "X-API-KEY: yourKeyHere" \
-     -H "Content-Type: application/json" \
+curl -X POST "https://api.creditparsepro.io/v1/parse-report" \ 
+     -H "X-API-KEY: yourKeyHere" \ 
+     -H "Content-Type: application/json" \ 
      -d '{
            "gross_monthly_income": 5000,
            "outcome": 1,
@@ -408,3 +409,55 @@ TU4R062011                        1614F 0459317220240229143215PH0101207000SH0102
 ### C. Field Calculations and Descriptions
 
 COMING SOON!
+
+### D. Pricing & Plans
+
+Please note that this section can become out-of-date and is to serve only as a reference. For accurate pricing and product details visit our website pricing page [creditparsepro.io/pricing](https://www.creditparsepro.io/pricing),
+
+#### Test
+
+Explore the capabilities of CreditParsePro.io with our free Test tier, designed for initial testing and development with limited monthly requests and a dedicated test environment.
+
+- Price: Free
+- Monthly Quota: 1,000 requests
+- Rate Limit: 10 requests per minute
+- Endpoints: Access to test endpoint
+- SLA: N/A
+- Response Time: Low (3+ days)
+- Features: Basic access for testing and development.
+
+#### Basic
+
+Ideal for small projects and startups, the Basic tier offers an increased quota and rate limit, plus a 99.95% SLA guarantee, ensuring reliable access to our production API.
+
+- Price: $20/month or $200/year
+- Monthly Quota: 10,000 requests
+- Rate Limit: 30 requests per minute
+- Endpoints: Test and production endpoints
+- SLA: 99.95%
+- Response Time: Medium (1-3 days)
+- Features: Ideal for small projects and startups.
+
+#### Professional
+
+Tailored for growing businesses, the Professional tier boosts your monthly quota and rate limit significantly, includes feature request privileges, and maintains our 99.95% SLA with faster response times.
+
+- Price: $100/month or $1,000/year
+- Monthly Quota: 100,000 requests
+- Rate Limit: 60 requests per minute
+- Endpoints: Test and production endpoints
+- SLA: 99.95%
+- Response Time: High (<1 day)
+- Features: Includes feature requests, suitable for growing businesses.
+
+#### Enterprise
+
+Our Enterprise tier is designed for large-scale operations requiring the highest level of service, including unlimited access, the fastest response times, the ability to make feature requests, and personalized custom services to meet your needs.
+
+- Price: $250/month or $2,500/year
+- Monthly Quota: Unlimited
+- Rate Limit: 150 requests per minute
+- Endpoints: Test and production endpoints
+- SLA: 99.95%
+- Response Time: Critical (<1 hour)
+- Features: Includes feature requests and custom services such as integrations.
