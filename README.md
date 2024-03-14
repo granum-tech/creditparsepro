@@ -32,7 +32,8 @@
         - [Example Response](#example-response-2)
     - [Parse Credit Report (/v1/parse-report)](#parse-credit-report-v1parse-report)
         - [Example Request](#example-request-3)
-        - [Example Response](#example-response-3)
+        - [Example Response 'analytics' format](#example-response-analytics-format)
+        - [Example Response 'ml' format](#example-response-ml-format)        
 - [Error Codes and Messages](#error-codes-and-messages)
 - [Rate Limiting and SLA](#rate-limiting-and-sla)
 - [Feature Roadmap](#feature-roadmap)
@@ -260,6 +261,7 @@ curl -X GET https://api.creditparsepro.io/v1/rate-info \
     - **credit_report_text**: (required) The fixed-length credit report from the bureau.
     - **gross_monthly_income**: (optional) INT/FLOAT of income used to optionally calculate DTI
     - **outcome**: (optional) BIT 1/0 used in machine learning models to determine whether the record was "successful" or not. For example, in underwriting, credit reports associated with funded loans that did not default could be a 1 where those that were declined or funded and defaulted could be 0.
+    - **format**: (oprtional) Specifies the output format of the summary. Valid values are 'analytics' (default) and 'ml'. 'ml' option will remove address.zip, standardize adress.state into address.state_bit_{n} where n = [1,2,3,4,5,6]. Normalizes score from range 300-850.
 - Response:
     - for a full description of the fields see [Appendix C. Field Calculations and Descriptions](#c-field-calculations-and-descriptions)
 
@@ -272,18 +274,21 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
      -d '{
            "gross_monthly_income": 5000,
            "outcome": 1,
+           "format": "analytics",
            "credit_report_text": "Sample credit report text here... 
            feel free to use an example report that has been provided in the Appendix"
          }'
 ```
 
-#### Example response
+#### Example response 'analytics' format
 ```JSON
 {
   "address": {
     "address_changes_per_year": 0.26,
     "change_count": 1,
-    "months_at_current_address": 14.78
+    "months_at_current_address": 14.78,
+    "state": "il",
+    "zip": 60750
   },
   "age": 32,
   "collections": {
@@ -301,7 +306,80 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
       "90_days_sum": 0
     }
   },
-  "dti": 8.5,
+  "dti": 7.08,
+  "employment": {
+    "months_at_current_employer": 0
+  },
+  "inquiries": {
+    "past_6_months_count": 2,
+    "total_count": 2
+  },
+  "public_records": {
+    "count": 0
+  },
+  "score": 696,
+  "tradelines": {
+    "credit": {
+      "open_count": 0,
+      "total_count": 0
+    },
+    "installment": {
+      "installment_utilization_ratio": 57.57,
+      "open_count": 2,
+      "open_sum": 7592,
+      "total_count": 2
+    },
+    "mortgage": {
+      "open_count": 1,
+      "total_count": 1
+    },
+    "overall": {
+      "oldest_open_date_months": 349,
+      "open_accounts": 6,
+      "total_accounts": 6,
+      "total_monthly_payments": 425
+    },
+    "revolving": {
+      "open_count": 3,
+      "open_sum": 15500,
+      "revolving_utilization_ratio": 1.91,
+      "total_count": 3
+    }
+  }
+}
+```
+
+### Example response 'ml' format
+```JSON
+{
+  "address": {
+    "address_changes_per_year": 0.26,
+    "change_count": 1,
+    "months_at_current_address": 14.78,
+    "state_bit_1": 0,
+    "state_bit_2": 0,
+    "state_bit_3": 1,
+    "state_bit_4": 1,
+    "state_bit_5": 0,
+    "state_bit_6": 1
+  },
+  "age": 32,
+  "collections": {
+    "count": 0
+  },
+  "delinquencies": {
+    "past_due": {
+      "open_count": 0,
+      "open_sum": 0,
+      "total_count": 0
+    },
+    "times_late": {
+      "30_days_sum": 0,
+      "60_days_sum": 0,
+      "90_days_sum": 0
+    }
+  },
+  "dti": 7.08,
   "employment": {
     "months_at_current_employer": 0
   },
@@ -313,7 +391,7 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
   "public_records": {
     "count": 0
   },
-  "score": 696,
+  "score": 0.72,
   "tradelines": {
     "credit": {
       "open_count": 0,
