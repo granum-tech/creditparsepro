@@ -51,13 +51,13 @@
 
 1. Visit our website [creditparsepro.io/pricing](https://www.creditparsepro.io/pricing)
 2. Choose a product tier - note that our **test** tier will <u>always</u> be free
-3. Upon signing up you will receive an email with your API keys (test and production endpoints)
+3. Upon signing up you will receive an email with your API key
 
 It is critical that you store your API keys securely. If you lose access to them please reach out to info@creditparsepro.io for assistance. 
 
 ### Quick Start
 
-Once you've obtained your API keys, you can quickly test the API with a sample request. 
+Once you've obtained your API key, you can quickly test the API with a sample request. 
 
 The below curl is lengthy because it includes the entirety of a sample credit report in the **credit_report_text** variable. You can set your credit report text to a variable prior and pass the variable instead if you would like. To see example fixed-length credit reports see the [Appendix](#appendix).
 
@@ -439,13 +439,13 @@ creditparsepro.io API uses conventional HTTP response codes to indicate the succ
 Rate limiting is carried out via monthly and per-minute quotas. They are determined by the count of successful requests in that time period. The limits are determined based on your product tier.
 
 - monthly quota
-    - test: 1000
+    - test: 100
     - basic: 10,000 
     - professional: 100,000
     - enterprise: Unlimited
 
 - per-minute rate limit
-    - test: 10
+    - test: 5
     - basic: 30
     - professional: 60 
     - enterprise: 150
@@ -497,8 +497,8 @@ Please note that this section can become out-of-date and is to serve only as a r
 Explore the capabilities of CreditParsePro.io with our free Test tier, designed for initial testing and development with limited monthly requests and a dedicated test environment.
 
 - Price: Free
-- Monthly Quota: 1,000 requests
-- Rate Limit: 10 requests per minute
+- Monthly Quota: 100 requests
+- Rate Limit: 5 requests per minute
 - Endpoints: Access to test endpoint
 - SLA: N/A
 - Response Time: Low (3+ days)
