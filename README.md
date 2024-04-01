@@ -185,22 +185,23 @@ Similarly, responses are returned in JSON format.
 
 ### Test/Production
 
-All accounts come with test endpoint access. Only paid accounts have access to the production endpoint.  
-There is no SLA associated with the test endpoint as it may be used for internal testing purposes.
-
-Test endpoint:
-```
-https://test.creditparsepro.io/v1/quota-info
-```
+All accounts come with test and production endpoint access.
+There is no SLA associated with the test endpoint as it may be used for internal testing purposes and for public user-acceptance testing of new features.
 
 Production endpoint:
 ```
-https://api.creditparsepro.io/v1/quota-info
+https://api.creditparsepro.io/v1/parse-report
 ```
+
+Test endpoint:
+```
+https://test.creditparsepro.io/v1/parse-report
+```
+
 
 ### Quota Information (/v1/quota-info)
 - Description: 
-    - Retrieves your current quota usage, including the total allowed requests and the reset date.  
+    - Retrieves your current quota usage, including the total allowed requests and the reset date. This request does not use up your quota and can be requested an unlimited amount of times.  
 - URL:
     - https://api.creditparsepro.io/v1/quota-info
     - https://test.creditparsepro.io/v1/quota-info
@@ -231,7 +232,7 @@ curl -X GET https://api.creditparsepro.io/v1/quota-info \
 
 ### Rate Information (/v1/rate-info)
 - Description: 
-    - Provides information on your current rate limit, showing how many requests you can make per minute.
+    - Provides information on your current rate limit, showing how many requests you can make per minute. This request does not use up your quota and can be requested an unlimited amount of times.  
 - URL:
     - https://api.creditparsepro.io/v1/rate-info
     - https://test.creditparsepro.io/v1/rate-info
