@@ -13,6 +13,7 @@
 </p>  
 
 # Contents
+- [About](#about)
 - [Getting Started](#getting-started)
     - [Sign Up](#sign-up)
     - [Quick Start](#quick-start)
@@ -44,6 +45,20 @@
     - [C. Field Calculations and Descriptions](#c-field-calculations-and-descriptions)
     - [D. Pricing & Plans](#d-pricing--plans)
 
+## About
+
+Are you stuck with historical and/or operational fixed-length format credit reports and are trying to enable analytics and machine learning for your organization?
+
+Many companies rely on connectors and servicers to handle the process of sending a request to the credit bureaus and presenting the returned reports. Many of these connectors are outdated and still provide only a human-readable and fixed-length format. Until now, fixed-length formats required hundreds of pages of documentation and conditional logic to parse. 
+
+Now with our API you can pull that data and process it in a format that is useful for analytics and machine learning enabling fintech use-cases.
+
+* Automated Underwriting
+* Credit Scoring Models
+* Fraud Detection
+* Risk Assessment
+* Bankruptcy Predictions
+* Debt Collection Optimization
 
 ## Getting Started
 
