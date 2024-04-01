@@ -9,7 +9,8 @@
 
   Whether your company is sitting on years of historical fixed-length credit reports or this is the format your operational systems use today, our API can enable modern solutions and insights.
 
-  Visit our website **[creditparsepro.io](https://www.creditparsepro.io/)** to signup.
+  Visit our website **[creditparsepro.io](https://www.creditparsepro.io/)** to signup.  
+  Returning customer billing portal **[stripe.creditparsepro.io](https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww)**.
 </p>  
 
 # Contents
