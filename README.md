@@ -99,6 +99,7 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
     "months_at_current_address": 14.78
   },
   "age": 32,
+  "date": "2024-02-29",
   "collections": {
     "count": 0
   },
@@ -308,6 +309,7 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
     "zip": 60750
   },
   "age": 32,
+  "date": "2024-02-29",
   "collections": {
     "count": 0
   },
@@ -370,9 +372,8 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
 ```JSON
 {
   "address": {
-    "address_changes_per_year": 0.26,
-    "change_count": 1,
-    "months_at_current_address": 14.78,
+    "address_change_count_per_year_of_life": 0.0312,
+    "address_changes_per_year_scaled": 0.0217,
     "state_bit_1": 0,
     "state_bit_2": 0,
     "state_bit_3": 1,
@@ -380,61 +381,73 @@ curl -X POST "https://api.creditparsepro.io/v1/parse-report" \
     "state_bit_5": 0,
     "state_bit_6": 1
   },
-  "age": 32,
+  "age": 0.1707,
   "collections": {
-    "count": 0
+    "collections_exist": 0,
+    "normalized_count": 0
   },
+  "date": "2024-02-29",
   "delinquencies": {
     "past_due": {
-      "open_count": 0,
-      "open_sum": 0,
-      "total_count": 0
+      "normalized_open_count_per_tradeline": 0,
+      "normalized_past_due_open_sum": 0,
+      "normalized_total_count_per_tradeline": 0
     },
     "times_late": {
-      "30_days_sum": 0,
-      "60_days_sum": 0,
-      "90_days_sum": 0
+      "normalized_30_days_per_tradeline": 0,
+      "normalized_30_days_per_year": 0,
+      "normalized_60_days_per_tradeline": 0,
+      "normalized_60_days_per_year": 0,
+      "normalized_90_days_per_tradeline": 0,
+      "normalized_90_days_per_year": 0
     }
   },
-  "dti": 7.08,
+  "dti": 0.0708,
   "employment": {
-    "months_at_current_employer": 0
+    "employment_stability_score": 1
   },
   "inquiries": {
-    "past_6_months_count": 2,
-    "total_count": 2
+    "normalized_total_count_per_year": 0.0688,
+    "recent_inquiry_ratio": 1
   },
   "outcome": 1,
   "public_records": {
-    "count": 0
+    "normalized_count": 0,
+    "public_records_exist": 0
   },
   "score": 0.72,
   "tradelines": {
     "credit": {
-      "open_count": 0,
-      "total_count": 0
+      "normalized_open_count_per_total_tradelines": 0,
+      "normalized_open_count_per_year": 0,
+      "normalized_total_count_per_total_tradelines": 0,
+      "normalized_total_count_per_year": 0
     },
     "installment": {
-      "installment_utilization_ratio": 57.57,
-      "open_count": 2,
-      "open_sum": 7592,
-      "total_count": 2
+      "installment_utilization_ratio": 0.5757,
+      "normalized_open_count_per_total_tradelines": 0.3333,
+      "normalized_open_count_per_year": 0.0688,
+      "normalized_total_count_per_total_tradelines": 0.3333,
+      "normalized_total_count_per_year": 0.0688
     },
     "mortgage": {
-      "open_count": 1,
-      "total_count": 1
+      "normalized_open_count_per_total_tradelines": 0.1667,
+      "normalized_open_count_per_year": 0.0344,
+      "normalized_total_count_per_total_tradelines": 0.1667,
+      "normalized_total_count_per_year": 0.0344
     },
     "overall": {
-      "oldest_open_date_months": 349,
-      "open_accounts": 6,
-      "total_accounts": 6,
-      "total_monthly_payments": 425
+      "normalized_open_count_per_total_tradelines": 0,
+      "normalized_open_count_per_year": 0,
+      "normalized_total_count_per_total_tradelines": 0,
+      "normalized_total_count_per_year": 0
     },
     "revolving": {
-      "open_count": 3,
-      "open_sum": 15500,
-      "revolving_utilization_ratio": 1.91,
-      "total_count": 3
+      "normalized_open_count_per_total_tradelines": 0.5,
+      "normalized_open_count_per_year": 0.1032,
+      "normalized_total_count_per_total_tradelines": 0.5,
+      "normalized_total_count_per_year": 0.1032,
+      "revolving_utilization_ratio": 0.0191
     }
   }
 }
