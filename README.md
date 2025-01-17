@@ -12,7 +12,8 @@
 <p align="center">
   <a href="https://www.creditparsepro.io/">Website</a> | 
   <a href="https://x.com/granum_tech">Twitter</a> | 
-  <a href="https://www.reddit.com/user/creditparsepro/">Docs</a> | 
+  <a href="https://github.com/granum-tech/creditparsepro/blob/main/README.md">GitHub</a> |     
+  <a href="https://github.com/granum-tech/creditparsepro/blob/main/docs/documentation.md">Docs</a> | 
   <a href="https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250">Postman</a> | 
   <a href="https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww">Stripe Billing Portal</a>
 </p>

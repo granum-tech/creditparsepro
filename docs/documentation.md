@@ -12,7 +12,8 @@
 <p align="center">
   <a href="https://www.creditparsepro.io/">Website</a> | 
   <a href="https://x.com/granum_tech">Twitter</a> | 
-  <a href="https://www.reddit.com/user/creditparsepro/">Docs</a> | 
+  <a href="https://github.com/granum-tech/creditparsepro/blob/main/README.md">GitHub</a> |   
+  <a href="https://github.com/granum-tech/creditparsepro/blob/main/docs/documentation.md">Docs</a> | 
   <a href="https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250">Postman</a> | 
   <a href="https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww">Stripe Billing Portal</a>
 </p>
@@ -235,16 +236,16 @@ View and run examples directly in your browser on our [Postman](https://www.post
 
 
 ### **Public Records**
-| Field Name                                      | Type      | Description                                                                 | Example              | Notes                                  |
-|-------------------------------------------------|-----------|-----------------------------------------------------------------------------|----------------------|----------------------------------------|
-| `public_record_type.key`                        | String    | Code for the type of public record.                                         | `1X`                 | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
-| `public_record_type.value`                      | String    | Description of the public record type.                                      | `Bankruptcy`         | Mapped from `public_record_type.key`. |
-| `reference_number`                              | String    | Reference number associated with the public record.                         | `125431`             | May be masked or truncated.            |
-| `plaintiff`                                     | String    | Name of the plaintiff or party associated with the public record.           | `John Doe`           | Defaults to `Unknown` if not available. |
-| `file_date`                                     | Date      | Date the public record was filed.                                           | `2023-07-01`         | Format: ISO8601 (`YYYY-MM-DD`).                  |
-| `amount`                                        | Integer   | Monetary amount associated with the public record (e.g., judgment amount).  | `15000`              | May be `null` if not applicable.        |
-| `equal_credit_opportunity_act_designator.key`   | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.                | `I`                  | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
-| `equal_credit_opportunity_act_designator.value` | String    | Description of the ECOA designator.                                         | `Individual`         | Mapped from `equal_credit_opportunity_act_designator.key`. |
+| Field Name                                      | Type      | Description                                                        | Example              | Notes                                  |
+|-------------------------------------------------|-----------|--------------------------------------------------------------------|----------------------|----------------------------------------|
+| `public_record_type.key`                        | String    | Code for the type of public record.                                | `1X`                 | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `public_record_type.value`                      | String    | Description of the public record type.                             | `Bankruptcy`         | Mapped from `public_record_type.key`. |
+| `reference_number`                              | String    | Reference number associated with the public record.                | `125431`             | May be masked or truncated.            |
+| `plaintiff`                                     | String    | Name of the plaintiff or party associated with the public record.  | `John Doe`           | Defaults to `Unknown` if not available. |
+| `file_date`                                     | Date      | Date the public record was filed.                                  | `2023-07-01`         | Format: ISO8601 (`YYYY-MM-DD`).                  |
+| `amount`                                        | Integer   | Monetary amount associated with the public record (e.g., judgment amount).| `15000`              | May be `null` if not applicable.        |
+| `equal_credit_opportunity_act_designator.key`   | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`                  | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `equal_credit_opportunity_act_designator.value` | String    | Description of the ECOA designator.                                | `Individual`         | Mapped from `equal_credit_opportunity_act_designator.key`. |
 
 
 ### **Score**
