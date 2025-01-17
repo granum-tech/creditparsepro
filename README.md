@@ -14,7 +14,7 @@
   <a href="https://x.com/granum_tech">Twitter</a> | 
   <a href="https://github.com/granum-tech/creditparsepro/blob/main/README.md">GitHub</a> |     
   <a href="https://github.com/granum-tech/creditparsepro/blob/main/docs/documentation.md">Docs</a> | 
-  <a href="https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250">Postman</a> | 
+  <a href="https://documenter.getpostman.com/view/34164250/2sA3BgBFus">Postman</a> | 
   <a href="https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww">Stripe Billing Portal</a>
 </p>
 
@@ -37,7 +37,7 @@ Unlock the full potential of your data with our API, and step into a new era of 
 
 ## Getting Started
 
-1. Use our [Postman](https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250) collection to test our API endpoints to ensure our product is right for you. And if you have further questions reach out to info@creditparsepro.io.
+1. Use our [Postman](https://documenter.getpostman.com/view/34164250/2sA3BgBFus) collection to test our API endpoints to ensure our product is right for you. And if you have further questions reach out to info@creditparsepro.io.
 2. Visit our [website](https://www.creditparsepro.io/) and pick a free or paid subscription plan via our Stripe integration.
 3. Receive an automated email with your API key via our SendGrid integration.
 4. Review our [documentation](/docs/documentation.md).
