@@ -10,30 +10,37 @@
 </p>
 
 <p align="center">
-  <a href="https://www.creditparsepro.io/">Visit our Website</a> | 
+  <a href="https://www.creditparsepro.io/">Website</a> | 
   <a href="https://x.com/granum_tech">Twitter</a> | 
-  <a href="https://www.reddit.com/user/creditparsepro/">Reddit</a> | 
-  <a href="https://documenter.getpostman.com/view/34164250/2sA3BgBFus">Postman Docs</a> | 
+  <a href="https://www.reddit.com/user/creditparsepro/">Docs</a> | 
+  <a href="https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250">Postman</a> | 
   <a href="https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww">Stripe Billing Portal</a>
 </p>
 
 # Contents
 - [About](#about)
+- [Version](#version)
 - [Getting Started](#getting-started)
 - [Support](#support)
 
 ## About
 
-Are you struggling to leverage credit report data effectively for analytics and machine learning? Many loan origination systems provide credit report data in a cumbersome, fixed-length format. This not only hampers your ability to perform in-depth analysis but also requires navigating through extensive documentation and complex logic to parse the data.
+Are you struggling to leverage credit report data effectively for analytics and machine learning? Many loan origination systems provide credit report data in a cumbersome, fixed-format text. This not only hampers your ability to perform in-depth analysis but also requires navigating through extensive documentation and complex logic to parse the data.
 
 Introducing our API solution – the bridge to transforming traditional credit report data into a dynamic format ready for advanced fintech applications. Our software parses curated fields for both analytics and machine learning use-cases in a ready-to-use JSON format.
 
 Unlock the full potential of your data with our API, and step into a new era of financial technology applications. Say goodbye to outdated processes and embrace a future where your data works for you, enabling faster, more accurate decision-making.
 
+## **Version**
+- **Current Version**: 1.0.0
+
 ## Getting Started
 
-Visit our website [creditparsepro.io](https://www.creditparsepro.io/) to sign up and get started. You can find detailed API documentation and examples on our [Postman workspace](https://documenter.getpostman.com/view/34164250/2sA3BgBFus).
+1. Use our [Postman](https://www.postman.com/creditparsepro/creditpasrepro-demo/collection/fzq473l/api-endpoints?action=share&creator=34164250) collection to test our API endpoints to ensure our product is right for you. And if you have further questions reach out to info@creditparsepro.io.
+2. Visit our [website](https://www.creditparsepro.io/) and pick a free or paid subscription plan via our Stripe integration.
+3. Receive an automated email with your API key via our SendGrid integration.
+4. Review our [documentation](/docs/documentation.md).
 
 ## Support
 
-For support and queries, please contact us at [info@creditparsepro.io](mailto:info@creditparsepro.io).
+Please contact us at [info@creditparsepro.io](mailto:info@creditparsepro.io) for suppoer and inquiries.
