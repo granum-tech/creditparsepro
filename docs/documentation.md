@@ -53,6 +53,7 @@ This document is a comprehensive guide covering getting started, authentication,
    - [Score](#score)
    - [Tradelines](#tradelines)
    - [Summary](#summary)
+   - [Raw Segments](#raw-segments)
 
 ---
 
@@ -205,8 +206,8 @@ View and run examples directly in your browser on our [Postman](https://document
 
 ### **Personal Information**
 
-| Field Name                      | Type      | Description                                       | Example              | Notes                                  |
-|---------------------------------|-----------|---------------------------------------------------|----------------------|----------------------------------------|
+| Field Name                      | Type      | Description                                       | Example                   | Notes                                  |
+|---------------------------------|-----------|---------------------------------------------------|---------------------------|----------------------------------------|
 | `social_security_number`        | String    | Social Security Number of the individual.         | `123456789`               |                                        |
 | `date_of_birth`                 | Date      | The date of birth of the individual.              | `1985-07-15`              | Format: ISO8601 (`YYYY-MM-DD`).        |
 | `names.first_name`              | String    | First name of the individual.                     | `JOHN`                    | All capitalized.                       |
@@ -236,16 +237,16 @@ View and run examples directly in your browser on our [Postman](https://document
 
 
 ### **Public Records**
-| Field Name                                      | Type      | Description                                                        | Example              | Notes                                  |
-|-------------------------------------------------|-----------|--------------------------------------------------------------------|----------------------|----------------------------------------|
-| `public_record_type.key`                        | String    | Code for the type of public record.                                | `1X`                 | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
-| `public_record_type.value`                      | String    | Description of the public record type.                             | `Bankruptcy`         | Mapped from `public_record_type.key`. |
-| `reference_number`                              | String    | Reference number associated with the public record.                | `125431`             | May be masked or truncated.            |
-| `plaintiff`                                     | String    | Name of the plaintiff or party associated with the public record.  | `John Doe`           | Defaults to `Unknown` if not available. |
-| `file_date`                                     | Date      | Date the public record was filed.                                  | `2023-07-01`         | Format: ISO8601 (`YYYY-MM-DD`).                  |
-| `amount`                                        | Integer   | Monetary amount associated with the public record (e.g., judgment amount).| `15000`              | May be `null` if not applicable.        |
-| `equal_credit_opportunity_act_designator.key`   | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`                  | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
-| `equal_credit_opportunity_act_designator.value` | String    | Description of the ECOA designator.                                | `Individual`         | Mapped from `equal_credit_opportunity_act_designator.key`. |
+| Field Name                                     | Type      | Description                                                        | Example        | Notes                                  |
+|------------------------------------------------|-----------|--------------------------------------------------------------------|----------------|----------------------------------------|
+| `public_record_type.key`                       | String    | Code for the type of public record.                                | `1X`           | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `public_record_type.value`                     | String    | Description of the public record type.                             | `Bankruptcy`   | Mapped from `public_record_type.key`. |
+| `reference_number`                             | String    | Reference number associated with the public record.                | `125431`       | May be masked or truncated.            |
+| `plaintiff`                                    | String    | Name of the plaintiff or party associated with the public record.  | `John Doe`     | Defaults to `Unknown` if not available. |
+| `file_date`                                    | Date      | Date the public record was filed.                                  | `2023-07-01`   | Format: ISO8601 (`YYYY-MM-DD`).        |
+| `amount`                                       | Integer   | Monetary amount associated with the public record (e.g., judgment amount).| `15000` | May be `null` if not applicable.        |
+| `equal_credit_opportunity_act_designator.key`  | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`            | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `equal_credit_opportunity_act_designator.value`| String    | Description of the ECOA designator.                                | `Individual`   | Mapped from `equal_credit_opportunity_act_designator.key`. |
 
 
 ### **Score**
@@ -330,5 +331,13 @@ View and run examples directly in your browser on our [Postman](https://document
 | `inquiries.total_count`                           | Integer    | Total number of credit inquiries.                                            | `6`                 |                              |
 | `inquiries.past_6_months_count`                   | Integer    | Number of inquiries in the past 6 months.                                    | `3`                 |                              |
 
+### Raw Segments
 
----
+| Field Name                    | Descriptions                                                                                                                              |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `inquiries`                   | Raw data from the credit report used to provide the fields returned in the `inquiries` and `summary` sections.                            |
+| `personal_information`        | Raw data from the credit report used to provide the fields returned in the `personal_information` and `summary` sections.                 |
+| `public_records`              | Raw data from the credit report used to provide the fields returned in the `public_records` and `summary` sections.                       |
+| `score`                       | Raw data from the credit report used to provide the fields returned in the `score` and `summary` sections.                                |
+| `tradelines`                  | Raw data from the credit report used to provide the fields returned in the `tradelines` and `summary` sections.                           |
+| `additional_summary_segments` | Raw data from the credit report used to provide the fields returned in the `summary` section that were not covered in the prior sections. |
