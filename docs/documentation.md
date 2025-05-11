@@ -47,6 +47,7 @@ This document is a comprehensive guide covering getting started, authentication,
      - [Examples](#examples-2)        
 9. [Data Dictionary](#data-dictionary)
    - [Field Format Convetions](#field-format-conventions)
+   - [Collections](#collections)
    - [Inquiries](#inquiries)
    - [Personal Information](#personal-information)
    - [Public Records](#public-records)
@@ -66,7 +67,24 @@ Introducing our API solution – the bridge to transforming traditional credit r
 Unlock the full potential of your data with our API, and step into a new era of financial technology applications. Say goodbye to outdated processes and embrace a future where your data works for you, enabling faster, more accurate decision-making.
 
 ## **Version**
-- **Current Version**: 1.0.0
+- **Current Version**: 1.1.0
+  - Effective date: 05/11/2025
+  - Segments
+      - Tradelines - added payment history tracking
+      - Collections - segment introduced including dates and balances
+      - Public Records - added status and close dates
+  - Summary
+      - Tradelines
+        - Overall
+          - added 6, 12, 24 period payment history summaries with and without student loans
+        - Installment
+          - split out current summary fields to with and without student loans
+      - Public Records
+          - now differentiate between open and closed public records and bankruptcies
+      - Collections
+          - expanded to now include balances and differentiate between total and open counts
+- 1.0.0
+  - initial release 
 
 ## Getting Started
 
@@ -186,10 +204,19 @@ View and run examples directly in your browser on our [Postman](https://document
 
 ### **Field Format Conventions**
 - **Date Fields**: All date fields are ISO8601 format (`YYYY-MM-DD`).
-- **Currency Fields**: Represented as integers (e.g., `10000` for $100.00).
+- **Currency Fields**: Represented as floats (e.g., `100.00` for $100.00).
 - **Boolean Fields**: Represented as `true` or `false`.
 - **Categorical Fields**: Represented as string values from a predefined list.
 ---
+
+### **Collections**
+| Field Name           | Type      | Description                                                   | Example           | Notes                                  |
+|----------------------|-----------|---------------------------------------------------------------|-------------------|----------------------------------------|
+| `open_date`          | Date      | The date when the collection was opened.                      | `2023-09-15`      | Format: ISO8601 (`YYYY-MM-DD`).        |
+| `effective_date`     | Date      | The date when the collection became effective.                | `2023-10-01`      | Format: ISO8601 (`YYYY-MM-DD`).        |
+| `closed_date`        | Date      | The date when the collection was closed.                      | `2024-02-15`      | Format: ISO8601 (`YYYY-MM-DD`).        |
+| `open_balance`       | Integer   | The current open balance on the collection.                   | `450`             | In dollars.                            |
+| `total_balance`      | Integer   | The total balance of the collection.                          | `500`             | In dollars.                            |
 
 ### **Inquiries**
 
@@ -247,6 +274,8 @@ View and run examples directly in your browser on our [Postman](https://document
 | `amount`                                       | Integer   | Monetary amount associated with the public record (e.g., judgment amount).| `15000` | May be `null` if not applicable.        |
 | `equal_credit_opportunity_act_designator.key`  | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`            | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
 | `equal_credit_opportunity_act_designator.value`| String    | Description of the ECOA designator.                                | `Individual`   | Mapped from `equal_credit_opportunity_act_designator.key`. |
+| `status_date`                 | Date     | The date when the public record status was last updated.             | `2024-03-15`    | Format: ISO8601 (`YYYY-MM-DD`).        |
+| `closed_date`                 | Date     | The date when the public record was closed.                          | `2024-04-10`    | Format: ISO8601 (`YYYY-MM-DD`).        |
 
 
 ### **Score**
@@ -287,6 +316,7 @@ View and run examples directly in your browser on our [Postman](https://document
 | `term`                           | Integer  | The repayment term for accounts in months.                             | `60`                  | Defaults to `0`.                       |
 | `monthly_payment`                | Integer  | The scheduled monthly payment amount for the account.                  | `200`                 | Defaults to `0`.                       |
 | `last_payment_date`              | Date     | The date of the last payment made on the account.                      | `2022-11-01`          | Format: ISO8601 (`YYYY-MM-DD`). Can be empty.|
+| `payment_history`             | String   | The payment history for this tradeline account, typically a sequence of codes.  | `111211111111` | Each character represents payment status for a period where the leftmost is the most recent. Depending on the bureau this will be different i.e. `C` vs `1` please consult your bureau documentation or reach out for assistance. |
 
 
 ### **Summary**
@@ -301,6 +331,24 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.overall.open_accounts`                | Integer    | Number of open tradelines in the report.                                     | `5`                 |                              |
 | `tradelines.overall.total_monthly_payments`       | Float      | Total monthly payment amounts across all tradelines.                         | `1200.50`           |                              |
 | `tradelines.overall.oldest_open_date_months`      | Integer    | Age of the oldest open tradeline, in months.                                 | `120`               |                              |
+| `tradelines.overall.regular_payment_count_past_6_periods`                       | Integer    | Count of regular payments in the past 6 months.                               | `5`                  |                              |
+| `tradelines.overall.non_regular_payment_count_past_6_periods`                   | Integer    | Count of non-regular payments in the past 6 months.                           | `1`                  |                              |
+| `tradelines.overall.regular_payment_count_past_12_periods`                      | Integer    | Count of regular payments in the past 12 months.                              | `10`                 |                              |
+| `tradelines.overall.non_regular_payment_count_past_12_periods`                  | Integer    | Count of non-regular payments in the past 12 months.                          | `2`                  |                              |
+| `tradelines.overall.regular_payment_count_past_24_periods`                      | Integer    | Count of regular payments in the past 24 months.                              | `20`                 |                              |
+| `tradelines.overall.non_regular_payment_count_past_24_periods`                  | Integer    | Count of non-regular payments in the past 24 months.                          | `4`                  |                              |
+| `tradelines.overall.non_regular_payment_percent_past_6_periods`                 | Float      | Percentage of non-regular payments in the past 6 months.                      | `16.67`              | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_past_12_periods`                | Float      | Percentage of non-regular payments in the past 12 months.                     | `16.67`              | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_past_24_periods`                | Float      | Percentage of non-regular payments in the past 24 months.                     | `16.67`              | Percentage value.            |
+| `tradelines.overall.regular_payment_count_no_student_loans_past_6_periods`      | Integer    | Count of regular payments in the past 6 months excluding student loans.       | `4`                  |                              |
+| `tradelines.overall.non_regular_payment_count_no_student_loans_past_6_periods`  | Integer    | Count of non-regular payments in the past 6 months excluding student loans.   | `1`                  |                              |
+| `tradelines.overall.regular_payment_count_no_student_loans_past_12_periods`     | Integer    | Count of regular payments in the past 12 months excluding student loans.      | `9`                  |                              |
+| `tradelines.overall.non_regular_payment_count_no_student_loans_past_12_periods` | Integer    | Count of non-regular payments in the past 12 months excluding student loans.  | `2`                  |                              |
+| `tradelines.overall.regular_payment_count_no_student_loans_past_24_periods`     | Integer    | Count of regular payments in the past 24 months excluding student loans.      | `18`                 |                              |
+| `tradelines.overall.non_regular_payment_count_no_student_loans_past_24_periods` | Integer    | Count of non-regular payments in the past 24 months excluding student loans.  | `4`                  |                              |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_6_periods`| Float      | Percentage of non-regular payments excluding student loans in past 6 months.  | `20.0`               | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_12_periods`| Float     | Percentage of non-regular payments excluding student loans in past 12 months. | `18.18`              | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_24_periods`| Float     | Percentage of non-regular payments excluding student loans in past 24 months. | `18.18`              | Percentage value.            |
 | `tradelines.revolving.open_sum`                   | Float      | Total credit limit for open revolving tradelines.                            | `20000.00`          |                              |
 | `tradelines.revolving.open_count`                 | Integer    | Number of open revolving tradelines.                                         | `3`                 |                              |
 | `tradelines.revolving.total_count`                | Integer    | Total number of revolving tradelines.                                        | `5`                 |                              |
@@ -309,6 +357,10 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.installment.total_count`              | Integer    | Total number of installment tradelines.                                      | `4`                 |                              |
 | `tradelines.installment.installment_utilization_ratio` | Float | Utilization ratio for installment tradelines.                                | `70.0`              | Percentage value.            |
 | `tradelines.installment.open_sum`                 | Float      | Total balance for open installment tradelines.                               | `5000.00`           |                              |
+| `tradelines.installment.installment_utilization_ratio_no_student_loans`        | Float      | Utilization ratio for installment tradelines excluding student loans.        | `65.0`               | Percentage value.            |
+| `tradelines.installment.open_count_no_student_loans`                           | Integer    | Number of open installment tradelines excluding student loans.               | `2`                  |                              |
+| `tradelines.installment.open_sum_no_student_loans`                             | Float      | Total balance for open installment tradelines excluding student loans.       | `4200.00`            |                              |
+| `tradelines.installment.total_count_no_student_loans`                          | Integer    | Total number of installment tradelines excluding student loans.              | `3`                  |                              |
 | `tradelines.mortgage.open_count`                  | Integer    | Number of open mortgage tradelines.                                          | `1`                 |                              |
 | `tradelines.mortgage.total_count`                 | Integer    | Total number of mortgage tradelines.                                         | `1`                 |                              |
 | `tradelines.credit.open_count`                    | Integer    | Number of open credit tradelines.                                            | `4`                 |                              |
@@ -325,9 +377,14 @@ View and run examples directly in your browser on our [Postman](https://document
 | `delinquencies.times_late.30_days_sum`            | Integer    | Total count of 30-day late payment instances.                                | `2`                 |                              |
 | `delinquencies.times_late.60_days_sum`            | Integer    | Total count of 60-day late payment instances.                                | `1`                 |                              |
 | `delinquencies.times_late.90_days_sum`            | Integer    | Total count of 90-day late payment instances.                                | `0`                 |                              |
-| `public_records.count`                            | Integer    | Total number of public records reported.                                     | `1`                 |                              |
-| `public_records.bankruptcy_count`                 | Integer    | Number of bankruptcy records reported.                                       | `1`                 |                              |
-| `collections.count`                               | Integer    | Total number of collection records.                                          | `2`                 |                              |
+| `public_records.total_count`                                                   | Integer    | Total count of all public records.                                           | `2`                  |                              |
+| `public_records.total_open_count`                                              | Integer    | Count of open public records.                                                | `1`                  |                              |
+| `public_records.total_bankruptcy_count`                                        | Integer    | Total count of bankruptcy records.                                           | `1`                  |                              |
+| `public_records.total_open_bankruptcy_count`                                   | Integer    | Count of open bankruptcy records.                                            | `0`                  |                              |
+| `collections.count`                                                            | Integer    | Total count of all collections.                                              | `3`                  |                              |
+| `collections.open_count`                                                       | Integer    | Count of open collections.                                                   | `1`                  |                              |
+| `collections.open_balance`                                                     | Float      | Total balance of open collections.                                           | `450.00`             |                              |
+| `collections.total_balance`                                                    | Float      | Total balance of all collections.                                            | `950.00`             |                              |
 | `inquiries.total_count`                           | Integer    | Total number of credit inquiries.                                            | `6`                 |                              |
 | `inquiries.past_6_months_count`                   | Integer    | Number of inquiries in the past 6 months.                                    | `3`                 |                              |
 
