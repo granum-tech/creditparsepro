@@ -317,6 +317,8 @@ View and run examples directly in your browser on our [Postman](https://document
 | `monthly_payment`                | Integer  | The scheduled monthly payment amount for the account.                  | `200`                 | Defaults to `0`.                       |
 | `last_payment_date`              | Date     | The date of the last payment made on the account.                      | `2022-11-01`          | Format: ISO8601 (`YYYY-MM-DD`). Can be empty.|
 | `payment_history`             | String   | The payment history for this tradeline account, typically a sequence of codes.  | `111211111111` | Each character represents payment status for a period where the leftmost is the most recent. Depending on the bureau this will be different i.e. `C` vs `1` please consult your bureau documentation or reach out for assistance. |
+| `ecoa_code.key`                   | String   | Code for account ownership (e.g., individual, joint, authorized user).     | `A`                  | Mapping based on bureau (see docs).    |
+| `ecoa_code.value`                | String   | Human-readable description of the ECOA code.                               | `Authorized User`    | Mapped from `ecoa_code.key`.           |
 
 
 ### **Summary**
@@ -340,6 +342,12 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.overall.non_regular_payment_percent_past_6_periods`                 | Float      | Percentage of non-regular payments in the past 6 months.                      | `16.67`              | Percentage value.            |
 | `tradelines.overall.non_regular_payment_percent_past_12_periods`                | Float      | Percentage of non-regular payments in the past 12 months.                     | `16.67`              | Percentage value.            |
 | `tradelines.overall.non_regular_payment_percent_past_24_periods`                | Float      | Percentage of non-regular payments in the past 24 months.                     | `16.67`              | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_past_6_periods_worst`     | Float      | Highest non-regular % in the past 6 months from any single tradeline.      | `83.33`             | Reflects worst-performing tradeline only. |
+| `tradelines.overall.non_regular_payment_percent_past_6_periods_worst_open`| Float      | Same as above but only considering open tradelines.                         | `66.67`             | Only includes open tradelines. |
+| `tradelines.overall.non_regular_payment_percent_past_12_periods_worst`    | Float      | Highest non-regular % in past 12 months from any tradeline.                | `91.67`             | Reflects single worst tradeline. |
+| `tradelines.overall.non_regular_payment_percent_past_12_periods_worst_open`| Float     | Highest non-regular % in past 12 months from open tradelines only.         | `75.00`             | Open tradelines only. |
+| `tradelines.overall.non_regular_payment_percent_past_24_periods_worst`    | Float      | Highest non-regular % in past 24 months from any tradeline.                | `80.00`             | Reflects worst of all. |
+| `tradelines.overall.non_regular_payment_percent_past_24_periods_worst_open`| Float     | Same as above but restricted to open tradelines.                           | `64.00`             | Open tradelines only. |
 | `tradelines.overall.regular_payment_count_no_student_loans_past_6_periods`      | Integer    | Count of regular payments in the past 6 months excluding student loans.       | `4`                  |                              |
 | `tradelines.overall.non_regular_payment_count_no_student_loans_past_6_periods`  | Integer    | Count of non-regular payments in the past 6 months excluding student loans.   | `1`                  |                              |
 | `tradelines.overall.regular_payment_count_no_student_loans_past_12_periods`     | Integer    | Count of regular payments in the past 12 months excluding student loans.      | `9`                  |                              |
@@ -349,18 +357,54 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.overall.non_regular_payment_percent_no_student_loans_past_6_periods`| Float      | Percentage of non-regular payments excluding student loans in past 6 months.  | `20.0`               | Percentage value.            |
 | `tradelines.overall.non_regular_payment_percent_no_student_loans_past_12_periods`| Float     | Percentage of non-regular payments excluding student loans in past 12 months. | `18.18`              | Percentage value.            |
 | `tradelines.overall.non_regular_payment_percent_no_student_loans_past_24_periods`| Float     | Percentage of non-regular payments excluding student loans in past 24 months. | `18.18`              | Percentage value.            |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_6_periods_worst` | Float | Worst-performing tradeline excluding student loans in past 6 months.       | `85.00`             | Filters out student loans. |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_6_periods_worst_open` | Float | Same as above but only for open tradelines.                                | `75.00`             | Open tradelines only. |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_12_periods_worst` | Float | Worst-performing tradeline excluding student loans in past 12 months.      | `90.00`             | Excludes student loans. |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_12_periods_worst_open` | Float | Same as above but only for open tradelines.                                | `70.00`             | Excludes closed tradelines. |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_24_periods_worst` | Float | Worst-performing tradeline excluding student loans in past 24 months.      | `77.77`             | Filters out student loans. |
+| `tradelines.overall.non_regular_payment_percent_no_student_loans_past_24_periods_worst_open` | Float | Same as above but only for open tradelines.                                | `60.00`             | Open tradelines only. |
+| `tradelines.revolving.is_most_recent_period_open_non_regular_revolving` | Boolean | Most recent revolving tradeline period was non-regular.              | `0`                 |                              |
+| `tradelines.revolving.is_most_recent_3_period_open_non_regular_revolving` | Boolean | Most recent 3 periods of revolving tradelines had irregularities.   | `0`                 |                              |
 | `tradelines.revolving.open_sum`                   | Float      | Total credit limit for open revolving tradelines.                            | `20000.00`          |                              |
+| `tradelines.revolving.open_sum_individual`                                 | Float      | Total balance of open individual revolving tradelines.                      | `41219.0`           |                              |
+| `tradelines.revolving.open_sum_joint`                                      | Float      | Total balance of open joint revolving tradelines.                           | `0.0`               |                              |
+| `tradelines.revolving.open_sum_percent_joint`                              | Float      | Percentage of open revolving balance from joint tradelines.                | `0.0`               | Percentage value.            |
 | `tradelines.revolving.open_count`                 | Integer    | Number of open revolving tradelines.                                         | `3`                 |                              |
+| `tradelines.revolving.open_count_joint`                                   | Integer    | Open revolving tradelines jointly owned.                                   | `0`                 |                             |
+| `tradelines.revolving.open_count_individual`                              | Integer    | Open revolving tradelines individually owned.                              | `8`                 |                             |
 | `tradelines.revolving.total_count`                | Integer    | Total number of revolving tradelines.                                        | `5`                 |                              |
+| `tradelines.revolving.total_count_joint`                                  | Integer    | Total revolving tradelines jointly owned.                                  | `0`                 |                             |
+| `tradelines.revolving.total_count_individual`                             | Integer    | Total revolving tradelines individually owned.                             | `10`                |                             |
 | `tradelines.revolving.revolving_utilization_ratio`| Float      | Credit utilization ratio for revolving tradelines.                           | `30.0`              | Percentage value.            |
+| `tradelines.revolving.revolving_utilization_ratio_joint`                  | Float      | Utilization ratio of revolving joint tradelines.                           | `0.0`               |                             |
+| `tradelines.revolving.revolving_utilization_ratio_individual`             | Float      | Utilization ratio of revolving individual tradelines.                      | `79.19`             |                             |
+| `tradelines.installment.is_most_recent_period_open_non_regular_installment` | Boolean  | Whether the most recent installment tradeline period was non-regular.      | `0`                 | Only includes open tradelines. |
+| `tradelines.installment.is_most_recent_3_period_open_non_regular_installment` | Boolean | Whether the last 3 periods of open installment tradelines had issues.      | `0`                 |                              |
 | `tradelines.installment.open_count`               | Integer    | Number of open installment tradelines.                                       | `2`                 |                              |
+| `tradelines.installment.open_count_joint`                                 | Integer    | Open installment tradelines with joint ownership.                          | `3`                 |                             |
+| `tradelines.installment.open_count_individual`                            | Integer    | Open installment tradelines with individual ownership.                     | `0`                 |                             |
 | `tradelines.installment.total_count`              | Integer    | Total number of installment tradelines.                                      | `4`                 |                              |
+| `tradelines.installment.total_count_joint`                                | Integer    | Total installment tradelines that are joint.                               | `15`                |                             |
+| `tradelines.installment.total_count_individual`                           | Integer    | Total installment tradelines that are individual.                          | `3`                 |                             |
 | `tradelines.installment.installment_utilization_ratio` | Float | Utilization ratio for installment tradelines.                                | `70.0`              | Percentage value.            |
+| `tradelines.installment.installment_utilization_ratio_individual`         | Float      | Installment utilization for individually-owned tradelines.                 | `0.0`               |                             |
+| `tradelines.installment.installment_utilization_ratio_joint`              | Float      | Installment utilization for jointly-owned tradelines.                      | `94.64`             |                             |
 | `tradelines.installment.open_sum`                 | Float      | Total balance for open installment tradelines.                               | `5000.00`           |                              |
+| `tradelines.installment.open_sum_individual`                               | Float      | Total balance of open individual installment tradelines.                     | `0.0`               |                              |
+| `tradelines.installment.open_sum_joint`                                    | Float      | Total balance of open joint installment tradelines.                          | `290949.0`          |                              |
+| `tradelines.installment.open_sum_percent_joint`                            | Float      | Percentage of open installment balance from joint tradelines.               | `100.0`             | Percentage value.            |
 | `tradelines.installment.installment_utilization_ratio_no_student_loans`        | Float      | Utilization ratio for installment tradelines excluding student loans.        | `65.0`               | Percentage value.            |
+| `tradelines.installment.installment_utilization_ratio_no_student_loans_joint`   | Float      | Utilization ratio excluding student loans for joint tradelines.     | `94.64`             |                             |
+| `tradelines.installment.installment_utilization_ratio_no_student_loans_individual` | Float    | Same as above for individual tradelines.                             | `0.0`               |                             |
 | `tradelines.installment.open_count_no_student_loans`                           | Integer    | Number of open installment tradelines excluding student loans.               | `2`                  |                              |
 | `tradelines.installment.open_sum_no_student_loans`                             | Float      | Total balance for open installment tradelines excluding student loans.       | `4200.00`            |                              |
+| `tradelines.installment.open_sum_no_student_loans`                         | Float      | Open installment balance excluding student loans.                            | `290949.0`          |                              |
+| `tradelines.installment.open_sum_no_student_loans_individual`              | Float      | Open individual installment balance excluding student loans.                 | `0.0`               |                              |
+| `tradelines.installment.open_sum_no_student_loans_joint`                   | Float      | Open joint installment balance excluding student loans.                      | `290949.0`          |                              |
+| `tradelines.installment.open_sum_no_student_loans_percent_joint`           | Float      | Percentage of open installment balance from joint tradelines (no student loans). | `100.0`         | Percentage value.            |
 | `tradelines.installment.total_count_no_student_loans`                          | Integer    | Total number of installment tradelines excluding student loans.              | `3`                  |                              |
+| `tradelines.mortgage.is_most_recent_period_open_non_regular_mortgage` | Boolean | Most recent period of mortgage tradeline was non-regular.           | `0`                 |                              |
+| `tradelines.mortgage.is_most_recent_3_period_open_non_regular_mortgage` | Boolean | Last 3 periods of open mortgage tradelines had payment irregularities.| `0`               |      
 | `tradelines.mortgage.open_count`                  | Integer    | Number of open mortgage tradelines.                                          | `1`                 |                              |
 | `tradelines.mortgage.total_count`                 | Integer    | Total number of mortgage tradelines.                                         | `1`                 |                              |
 | `tradelines.credit.open_count`                    | Integer    | Number of open credit tradelines.                                            | `4`                 |                              |
@@ -388,10 +432,12 @@ View and run examples directly in your browser on our [Postman](https://document
 | `inquiries.total_count`                           | Integer    | Total number of credit inquiries.                                            | `6`                 |                              |
 | `inquiries.past_6_months_count`                   | Integer    | Number of inquiries in the past 6 months.                                    | `3`                 |                              |
 
+
 ### Raw Segments
 
 | Field Name                    | Descriptions                                                                                                                              |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `collections`                   | Raw data from the credit report used to provide the fields returned in the `collections` and `summary` sections.                            |
 | `inquiries`                   | Raw data from the credit report used to provide the fields returned in the `inquiries` and `summary` sections.                            |
 | `personal_information`        | Raw data from the credit report used to provide the fields returned in the `personal_information` and `summary` sections.                 |
 | `public_records`              | Raw data from the credit report used to provide the fields returned in the `public_records` and `summary` sections.                       |
