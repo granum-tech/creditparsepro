@@ -67,7 +67,15 @@ Introducing our API solution – the bridge to transforming traditional credit r
 Unlock the full potential of your data with our API, and step into a new era of financial technology applications. Say goodbye to outdated processes and embrace a future where your data works for you, enabling faster, more accurate decision-making.
 
 ## **Version**
-- **Current Version**: 1.3.0
+- **Current Version**: 1.4.0
+  - Effective date: 06/15/2025
+  - Summary
+      - Tradelines
+        - Mortgage - expanded current, delinquent, late stage delinquent status tracking
+        - Installment - added excess obligations analysis for general non-categorized installments  
+        - Late payments - expanded 30/60/90 day tracking by tradeline type (revolving, mortgage, installment, auto, recreational)
+        - Reworked installment non-student loan fields to exclude both student loans and mortgages
+- **1.3.0**
   - Effective date: 06/08/2025
   - Segments
       - Tradelines - added `months_reviewed` field and `status` field with key-value mapping for current account status
@@ -487,15 +495,19 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.installment.total_count_current`                                   | Integer    | Count of current installment accounts.                                        | `8`                  |                              |
 | `tradelines.installment.total_count_current_auto`                              | Integer    | Count of current auto installment accounts.                                   | `3`                  |                              |
 | `tradelines.installment.total_count_current_recreational`                      | Integer    | Count of current recreational installment accounts.                           | `2`                  |                              |
-| `tradelines.installment.total_count_current_non_student_loan`                  | Integer    | Count of current non-student loan installment accounts.                      | `5`                  |                              |
+| `tradelines.installment.total_count_current_no_student_loans_no_mortgage`      | Integer    | Count of current installment accounts excluding student loans and mortgages. | `5`                  |                              |
 | `tradelines.installment.total_count_delinquent`                                | Integer    | Count of delinquent installment accounts.                                    | `1`                  |                              |
 | `tradelines.installment.total_count_delinquent_auto`                           | Integer    | Count of delinquent auto installment accounts.                               | `0`                  |                              |
 | `tradelines.installment.total_count_delinquent_recreational`                   | Integer    | Count of delinquent recreational installment accounts.                       | `0`                  |                              |
-| `tradelines.installment.total_count_delinquent_non_student_loan`               | Integer    | Count of delinquent non-student loan installment accounts.                  | `1`                  |                              |
+| `tradelines.installment.total_count_delinquent_no_student_loans_no_mortgage`   | Integer    | Count of delinquent installment accounts excluding student loans and mortgages. | `1`               |                              |
 | `tradelines.installment.total_count_late_stage_delinquent`                     | Integer    | Count of late-stage delinquent installment accounts.                        | `0`                  |                              |
 | `tradelines.installment.total_count_late_stage_delinquent_auto`                | Integer    | Count of late-stage delinquent auto installment accounts.                   | `0`                  |                              |
 | `tradelines.installment.total_count_late_stage_delinquent_recreational`        | Integer    | Count of late-stage delinquent recreational installment accounts.           | `0`                  |                              |
-| `tradelines.installment.total_count_late_stage_delinquent_non_student_loan`    | Integer    | Count of late-stage delinquent non-student loan installment accounts.       | `0`                  |                              |
+| `tradelines.installment.total_count_late_stage_delinquent_no_student_loans_no_mortgage` | Integer | Count of late-stage delinquent installment accounts excluding student loans and mortgages. | `0` |                     |
+| `tradelines.installment.total_count_excess_obligations`                        | Integer    | Count of excess obligation installment accounts (non-mortgage, non-student loan, non-auto, non-recreational). | `2` |              |
+| `tradelines.installment.open_count_excess_obligations`                         | Integer    | Count of open excess obligation installment accounts.                        | `1`                  |                              |
+| `tradelines.installment.original_open_sum_excess_obligations`                  | Float      | Total original balance of open excess obligation installment accounts.       | `15000.0`            |                              |
+| `tradelines.installment.open_sum_excess_obligations`                           | Float      | Total current balance of open excess obligation installment accounts.        | `8500.0`             |                              |
 | `tradelines.auto_recreational.open_count`                                      | Integer    | Number of open auto/recreational tradelines.                                 | `2`                  |                              |
 | `tradelines.auto_recreational.total_count`                                     | Integer    | Total number of auto/recreational tradelines.                               | `3`                  |                              |
 | `tradelines.auto_recreational.is_most_recent_period_open_non_regular_auto_recreational` | Boolean | Most recent period of auto/recreational tradeline was non-regular.  | `0`                 |                              |
@@ -504,6 +516,9 @@ View and run examples directly in your browser on our [Postman](https://document
 | `tradelines.mortgage.is_most_recent_3_period_open_non_regular_mortgage` | Boolean | Last 3 periods of open mortgage tradelines had payment irregularities.| `0`               |      
 | `tradelines.mortgage.open_count`                  | Integer    | Number of open mortgage tradelines.                                          | `1`                 |                              |
 | `tradelines.mortgage.total_count`                 | Integer    | Total number of mortgage tradelines.                                         | `1`                 |                              |
+| `tradelines.mortgage.total_count_current`         | Integer    | Count of current mortgage accounts.                                          | `1`                  |                              |
+| `tradelines.mortgage.total_count_delinquent`      | Integer    | Count of delinquent mortgage accounts.                                       | `0`                  |                              |
+| `tradelines.mortgage.total_count_late_stage_delinquent` | Integer | Count of late-stage delinquent mortgage accounts.                           | `0`                  |                              |
 | `tradelines.credit.open_count`                    | Integer    | Number of open credit tradelines.                                            | `4`                 |                              |
 | `tradelines.credit.total_count`                   | Integer    | Total number of credit tradelines.                                           | `6`                 |                              |
 | `tradelines.period_filtering.open_count_6_plus_periods`                      | Integer    | Number of open tradelines with 6+ payment periods.                           | `8`                 |                              |
@@ -528,6 +543,24 @@ View and run examples directly in your browser on our [Postman](https://document
 | `delinquencies.times_late.30_days_sum`            | Integer    | Total count of 30-day late payment instances.                                | `2`                 |                              |
 | `delinquencies.times_late.60_days_sum`            | Integer    | Total count of 60-day late payment instances.                                | `1`                 |                              |
 | `delinquencies.times_late.90_days_sum`            | Integer    | Total count of 90-day late payment instances.                                | `0`                 |                              |
+| `tradelines.revolving.30_days_sum`                | Integer    | Total count of 30-day late payments on revolving accounts.                  | `2`                  |                              |
+| `tradelines.revolving.60_days_sum`                | Integer    | Total count of 60-day late payments on revolving accounts.                  | `1`                  |                              |
+| `tradelines.revolving.90_days_sum`                | Integer    | Total count of 90-day late payments on revolving accounts.                  | `0`                  |                              |
+| `tradelines.mortgage.30_days_sum`                 | Integer    | Total count of 30-day late payments on mortgage accounts.                   | `0`                  |                              |
+| `tradelines.mortgage.60_days_sum`                 | Integer    | Total count of 60-day late payments on mortgage accounts.                   | `0`                  |                              |
+| `tradelines.mortgage.90_days_sum`                 | Integer    | Total count of 90-day late payments on mortgage accounts.                   | `0`                  |                              |
+| `tradelines.installment.30_days_sum`              | Integer    | Total count of 30-day late payments on installment accounts.                | `1`                  |                              |
+| `tradelines.installment.60_days_sum`              | Integer    | Total count of 60-day late payments on installment accounts.                | `0`                  |                              |
+| `tradelines.installment.90_days_sum`              | Integer    | Total count of 90-day late payments on installment accounts.                | `0`                  |                              |
+| `tradelines.installment.30_days_sum_no_student_loans_no_mortgage` | Integer | Total count of 30-day late payments on installment accounts (excluding student loans and mortgages). | `1` |                     |
+| `tradelines.installment.60_days_sum_no_student_loans_no_mortgage` | Integer | Total count of 60-day late payments on installment accounts (excluding student loans and mortgages). | `0` |                     |
+| `tradelines.installment.90_days_sum_no_student_loans_no_mortgage` | Integer | Total count of 90-day late payments on installment accounts (excluding student loans and mortgages). | `0` |                     |
+| `tradelines.installment.30_days_sum_auto`         | Integer    | Total count of 30-day late payments on auto installment accounts.           | `0`                  |                              |
+| `tradelines.installment.60_days_sum_auto`         | Integer    | Total count of 60-day late payments on auto installment accounts.           | `0`                  |                              |
+| `tradelines.installment.90_days_sum_auto`         | Integer    | Total count of 90-day late payments on auto installment accounts.           | `0`                  |                              |
+| `tradelines.installment.30_days_sum_recreational` | Integer    | Total count of 30-day late payments on recreational installment accounts.   | `0`                  |                              |
+| `tradelines.installment.60_days_sum_recreational` | Integer    | Total count of 60-day late payments on recreational installment accounts.   | `0`                  |                              |
+| `tradelines.installment.90_days_sum_recreational` | Integer    | Total count of 90-day late payments on recreational installment accounts.   | `0`                  |                              |
 | `public_records.total_count`                                                   | Integer    | Total count of all public records.                                           | `2`                  |                              |
 | `public_records.total_open_count`                                              | Integer    | Count of open public records.                                                | `1`                  |                              |
 | `public_records.total_bankruptcy_count`                                        | Integer    | Total count of bankruptcy records.                                           | `1`                  |                              |

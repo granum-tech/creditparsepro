@@ -33,7 +33,7 @@ Introducing our API solution – the bridge to transforming traditional credit r
 Unlock the full potential of your data with our API, and step into a new era of financial technology applications. Say goodbye to outdated processes and embrace a future where your data works for you, enabling faster, more accurate decision-making.
 
 ## **Version**
-- **Current Version**: 1.0.0
+- **Current Version**: 1.4.0
 
 ## Getting Started
 
