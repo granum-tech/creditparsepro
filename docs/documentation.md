@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.creditparsepro.io/">Website</a> | 
+  <a href="https://www.granum-tech.com/products/creditparsepro/">Website</a> | 
   <a href="https://x.com/granum_tech">Twitter</a> | 
   <a href="https://github.com/granum-tech/creditparsepro/blob/main/README.md">GitHub</a> |   
   <a href="https://github.com/granum-tech/creditparsepro/blob/main/docs/documentation.md">Docs</a> | 
@@ -117,14 +117,14 @@ Unlock the full potential of your data with our API, and step into a new era of 
 
 ## Getting Started
 
-1. Use our [Postman](https://documenter.getpostman.com/view/34164250/2sA3BgBFus) collection to test our API endpoints to ensure our product is right for you. And if you have further questions reach out to info@creditparsepro.io.
-2. Visit our [website](https://www.creditparsepro.io/) and pick a free or paid subscription plan via our Stripe integration.
+1. Use our [Postman](https://documenter.getpostman.com/view/34164250/2sA3BgBFus) collection to test our API endpoints to ensure our product is right for you. And if you have further questions reach out to info@granum-tech.com.
+2. Visit our [website](https://www.granum-tech.com/products/creditparsepro/) and pick a free or paid subscription plan via our Stripe integration.
 3. Receive an automated email with your API key via our SendGrid integration.
 4. Review our [documentation](/docs/documentation.md).
 
 ## Support
 
-Please contact us at [info@creditparsepro.io](mailto:info@creditparsepro.io) for suppoer and inquiries.
+Please contact us at [info@granum-tech.com](mailto:info@granum-tech.com) for suppoer and inquiries.
 
 
 ## **Authentication**
@@ -133,14 +133,14 @@ Authenticate each request by including the request header `x-api-key`. This was 
 
 It is okay to share your API key within your organization as there are no seat limits imposed only rate and quota limits.
 
-In the case that a key is lost please email us from the email used to signup at info@creditparsepro.io.
+In the case that a key is lost please email us from the email used to signup at info@granum-tech.com.
 
 If an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.
 
 
 ## **Quota & Rate Limits**
 
-API access rate and quota limits apply at a per-API key basis in unit time. The rate and quota you are offered depends on the product subscription tier that you chose. If you would like to upgrade you can do so at any time in the [Stripe billing portal](https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww). You can see our detailed product offerings on our [website](https://www.creditparsepro.io/pricing).
+API access rate and quota limits apply at a per-API key basis in unit time. The rate and quota you are offered depends on the product subscription tier that you chose. If you would like to upgrade you can do so at any time in the [Stripe billing portal](https://billing.stripe.com/p/login/14kaHj8NX5LJ5Ta8ww). You can see our detailed product offerings on our [website](https://www.granum-tech.com/products/creditparsepro/).
 
 You can check your current rate and quota limits using the GET requests [GET v1/quota-info](#get-v1quota-info) and [GET v1/rate-info](#get-v1rate-info).
 
@@ -205,7 +205,7 @@ This GET request retrieves your current quota usage, including the total allowed
 
 #### **Examples**
 
-View and run examples directly in your browser on our [Postman](https://www.postman.com/creditparsepro/creditpasrepro-demo/request/xfrvhg1/v1-quota-info).
+View and run examples directly in your browser on our [Postman](https://www.postman.com/granum-tech/creditpasrepro-demo/request/xfrvhg1/v1-quota-info).
 
 ### **GET v1/rate-info**
 
@@ -253,9 +253,9 @@ View and run examples directly in your browser on our [Postman](https://document
 |----------------------|-----------|-----------------------------------------------------------------------------|-------------------|----------------------------------------|
 | `inquiry_date`       | Date      | The date of the inquiry, formatted as `YYYY-MM-DD`.                         | `2025-01-01`      | Parsed from segment-specific formats.  |
 | `amount`             | Integer   | The amount associated with the inquiry, if applicable.                      | `5000`            | May be `null` if no amount is provided.|
-| `inquiry_type.key`   | String    | The code representing the industry type of inquiry or portfolio.            | `F`               | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `inquiry_type.key`   | String    | The code representing the industry type of inquiry or portfolio.            | `F`               | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `inquiry_type.value` | String    | The descriptive value corresponding to `inquiry_type.key`.                  | `Finance/personal`| Mapped from `inquiry_type.key`.       |
-| `industry_type.key`  | String    | The code representing the industry type of the inquiry.                     | `07`              | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `industry_type.key`  | String    | The code representing the industry type of the inquiry.                     | `07`              | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `industry_type.value`| String    | The descriptive value corresponding to `industry_type.key`.                 | `Charge Account`  | Mapped from `industry_type.key`.   |
 | `subscriber_name`    | String    | The name of the subscriber (creditor) that initiated the inquiry.           | `CAPITAL ONE`     | Extracted from subsegments or fields.  |
 
@@ -272,7 +272,7 @@ View and run examples directly in your browser on our [Postman](https://document
 | `names.suffix`                  | String    | Suffix of the individual (e.g., Jr., Sr.).        | `JR`                      | All capitalized.                       |
 | `names.is_primary`              | Boolean   | Indicates if this is the primary name.            | `1`                       | `1` for primary, `0` otherwise.        |
 | `addresses.first_reported_date` | Date      | The first date the address was reported.          | `2020-01-01`              | Format: ISO8601 (`YYYY-MM-DD`).        |
-| `addresses.dwelling_type.key`   | String    | Code for the dwelling type.                       | `S`                       | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `addresses.dwelling_type.key`   | String    | Code for the dwelling type.                       | `S`                       | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `addresses.dwelling_type.value` | String    | Description of the dwelling type.                 | `Single-family dwelling`  | Mapped from `dwelling_type.key`. |
 | `addresses.street_number`       | String    | Street number of the address.                     | `123`                     |                                        |
 | `addresses.prefix`              | String    | Prefix direction of the street (e.g., N, S).      | `N`                       | All capitalized.                       |
@@ -287,7 +287,7 @@ View and run examples directly in your browser on our [Postman](https://document
 | `employment.occupation`         | String    | Occupation or job title.                          | `SOFTWARE ENGINEER`       | All capitalized. Defaults to `Unknown` if not available.|
 | `employment.reported_date`      | Date      | The date the employment was reported.             | `2021-06-01`              | Format: ISO8601 (`YYYY-MM-DD`).        |
 | `employment.income`             | Integer   | Income reported for the job.                      | `75000`                   | Defaults to `null` if not available.   |
-| `employment.pay_basis.key`      | String    | Code for the pay basis (e.g., H for Hourly).      | `M`                       | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `employment.pay_basis.key`      | String    | Code for the pay basis (e.g., H for Hourly).      | `M`                       | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `employment.pay_basis.value`    | String    | Description of the pay basis.                     | `Monthly`                 | Mapped from `pay_basis.key`.     |
 | `employment.is_most_recent`     | Boolean   | Indicates if this is the most recent employment.  | `1`                       | `1` for most recent, `0` otherwise.    |
 
@@ -295,13 +295,13 @@ View and run examples directly in your browser on our [Postman](https://document
 ### **Public Records**
 | Field Name                                     | Type      | Description                                                        | Example        | Notes                                  |
 |------------------------------------------------|-----------|--------------------------------------------------------------------|----------------|----------------------------------------|
-| `public_record_type.key`                       | String    | Code for the type of public record.                                | `1X`           | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `public_record_type.key`                       | String    | Code for the type of public record.                                | `1X`           | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `public_record_type.value`                     | String    | Description of the public record type.                             | `Bankruptcy`   | Mapped from `public_record_type.key`. |
 | `reference_number`                             | String    | Reference number associated with the public record.                | `125431`       | May be masked or truncated.            |
 | `plaintiff`                                    | String    | Name of the plaintiff or party associated with the public record.  | `John Doe`     | Defaults to `Unknown` if not available. |
 | `file_date`                                    | Date      | Date the public record was filed.                                  | `2023-07-01`   | Format: ISO8601 (`YYYY-MM-DD`).        |
 | `amount`                                       | Integer   | Monetary amount associated with the public record (e.g., judgment amount).| `15000` | May be `null` if not applicable.        |
-| `equal_credit_opportunity_act_designator.key`  | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`            | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `equal_credit_opportunity_act_designator.key`  | String    | Code for the ECOA (Equal Credit Opportunity Act) designator.       | `I`            | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `equal_credit_opportunity_act_designator.value`| String    | Description of the ECOA designator.                                | `Individual`   | Mapped from `equal_credit_opportunity_act_designator.key`. |
 | `status_date`                 | Date     | The date when the public record status was last updated.             | `2024-03-15`    | Format: ISO8601 (`YYYY-MM-DD`).        |
 | `closed_date`                 | Date     | The date when the public record was closed.                          | `2024-04-10`    | Format: ISO8601 (`YYYY-MM-DD`).        |
@@ -312,13 +312,13 @@ View and run examples directly in your browser on our [Postman](https://document
 |-----------------------------|----------|----------------------------------------------------------------------------|--------------------|----------------------------------------|
 | `score`                     | Integer  | The calculated credit score.                                               | `750`              | May vary by bureau and score model.    |
 | `sign`                      | String   | Indicates whether the score is positive (+) or negative (-).               | `+`                | Can be `+` or `-`        |
-| `score_factor_1.key`        | String   | Code for the first score factor.                                           | `01`               | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `score_factor_1.key`        | String   | Code for the first score factor.                                           | `01`               | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `score_factor_1.value`      | String   | Description of the first score factor.                                     | `HIGH CREDIT USAGE`| Mapped from `score_factor_1.key`.      |
-| `score_factor_2.key`        | String   | Code for the second score factor.                                          | `02`               | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `score_factor_2.key`        | String   | Code for the second score factor.                                          | `02`               | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `score_factor_2.value`      | String   | Description of the second score factor.                                    | `MISSED PAYMENTS`  | Mapped from `score_factor_2.key`.      |
-| `score_factor_3.key`        | String   | Code for the third score factor.                                           | `03`               | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `score_factor_3.key`        | String   | Code for the third score factor.                                           | `03`               | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `score_factor_3.value`      | String   | Description of the third score factor.                                     | `LIMITED HISTORY`  | Mapped from `score_factor_3.key`.      |
-| `score_factor_4.key`        | String   | Code for the fourth score factor.                                          | `04`               | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `score_factor_4.key`        | String   | Code for the fourth score factor.                                          | `04`               | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `score_factor_4.value`      | String   | Description of the fourth score factor.                                    | `NEW ACCOUNTS`     | Mapped from `score_factor_4.key`.      |
 | `service_model`             | String   | Code indicating the service or model used to calculate the score.          | `P00W40`           | Prefixed `P` for certain codes.        |
 
@@ -330,7 +330,7 @@ View and run examples directly in your browser on our [Postman](https://document
 | `open_date`                      | Date     | The date when the account was opened.                                  | `2021-01-01`          | Format: ISO8601 (`YYYY-MM-DD`).        |
 | `close_date`                     | Date     | The date when the account was closed.                                  | `2022-12-31`          | Format: ISO8601 (`YYYY-MM-DD`). Empty if the account is still open.|
 | `is_open`                        | Boolean  | Indicates if the account is currently open.                            | `1`                   | `1` for open, `0` for closed.          |
-| `portfolio_type.key`             | String   | Code for the portfolio type of the tradeline.                          | `R`                   | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `portfolio_type.key`             | String   | Code for the portfolio type of the tradeline.                          | `R`                   | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `portfolio_type.value`           | String   | Description of the portfolio type.                                     | `Revolving`           | Mapped from `portfolio_type.key`.      |
 | `current_balance`                | Integer  | The current balance on the account.                                    | `5000`                | May be `0` if account is paid off.     |
 | `original_balance`               | Integer  | The original balance on the account.                                   | `10000`               | Not applicable for all types. `0` if not applicable. |
@@ -347,7 +347,7 @@ View and run examples directly in your browser on our [Postman](https://document
 | `last_payment_date`              | Date     | The date of the last payment made on the account.                      | `2022-11-01`          | Format: ISO8601 (`YYYY-MM-DD`). Can be empty.|
 | `payment_history`             | String   | The payment history for this tradeline account, typically a sequence of codes.  | `111211111111` | Each character represents payment status for a period where the leftmost is the most recent. Depending on the bureau this will be different i.e. `C` vs `1` please consult your bureau documentation or reach out for assistance. |
 | `months_reviewed`             | Integer  | Number of months of payment history reviewed for this tradeline.            | `24`                  | Used for filtering in summary calculations. |
-| `status.key`                  | String   | Code for the current account status.                                        | `R1`                  | Specific to each bureau's mapping, reach out to info@creditparsepro.io for details.|
+| `status.key`                  | String   | Code for the current account status.                                        | `R1`                  | Specific to each bureau's mapping, reach out to info@granum-tech.com for details.|
 | `status.value`                | String   | Human-readable description of the account status.                           | `Current account`     | Mapped from `status.key`.              |
 | `ecoa_code.key`                   | String   | Code for account ownership (e.g., individual, joint, authorized user).     | `A`                  | Mapping based on bureau (see docs).    |
 | `ecoa_code.value`                | String   | Human-readable description of the ECOA code.                               | `Authorized User`    | Mapped from `ecoa_code.key`.           |
